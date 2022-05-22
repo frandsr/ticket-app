@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Layout, Menu } from "antd";
 import {
   UserOutlined,
@@ -7,15 +7,23 @@ import {
 } from "@ant-design/icons";
 import { MainRoutes } from "../components/routing/MainRoutes";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { UIContext } from "../contexts/UIContext";
 
 const { Sider, Content } = Layout;
 
 const RouterPage = () => {
+  const { ocultarMenu } = useContext(UIContext);
+
   return (
     <>
       <Router>
         <Layout>
-          <Sider style={{ height: "100vh" }}>
+          <Sider
+            style={{ height: "100vh" }}
+            collapsedWidth="0"
+            breakpoint="md"
+            hidden={ocultarMenu}
+          >
             <div className="logo" />
             <Menu
               theme="dark"
